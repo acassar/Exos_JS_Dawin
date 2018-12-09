@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Exercice 3</title>
+  </head>
+  <body>
+
+    <div id="main">
+      <form id="form" method="post">
+
+      <p>Chercher un nombre premier</p>
+      <input id="val" type="text" name="" value="">
+      <button  type="submit" name="button">Valider</button>
+      <div id="res">
+
+      </div>
+    </form>
+    </div>
+  </body>
+  <script src="jquery-3.2.1.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#form').submit(function(event){
+      event.preventDefault();
+    $.ajax({
+      url: "http://www.labri.fr/perso/pbiasutt/Cours/KDJS/TD02/functions.php",
+      dataType: "script",
+      success: function(data){
+        var nb = $('#val').val();
+        var prime = isPrime(nb);
+        $('#res').empty();
+        if(!isNaN(nb) && nb != "")
+        {
+
+        if(prime)
+          $('#res').append("<p> Le nombre " + nb +" est premier</p>");
+          else
+          $('#res').append("<p> Le nombre " + nb + " n'est pas premier</p>");
+        }else {
+          $('#res').append("Veuillez entrer un nombre valide !");
+
+        }
+
+      },
+      method: "POST"
+    });
+
+  });
+  });
+
+  </script>
+</html>

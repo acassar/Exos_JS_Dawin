@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Exercice 5</title>
+  </head>
+  <body>
+    <div id="main">
+      <form method="post">
+        <select id="searchBy" class="" name="">
+          <option value="nom">Nom</option>
+          <option value="cp">Code postal</option>
+          <option value="cd">Code département</option>
+        </select>
+        <input id="value" type="text" name="" value="">
+        <button id="valider" type="submit" name="button">Rechercher</button>
+      </form>
+      <div id="res">
+
+      </div>
+    </div>
+  </body>
+  <script src="jquery-3.2.1.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#valider').click(function(event){
+      event.preventDefault();
+    switch ($("#searchBy").val()) {
+      case "nom":
+      search = "nom";
+      value = $('#value').val();
+        break;
+      case "cp":
+      search = "codePostal";
+      value = $('#value').val();
+
+        break;
+      case "cd":
+      search = "codeDepartement";
+      value = $('#value').val();
+
+          break;
+      default:
+
+    }
+    $.getJSON( "https://geo.api.gouv.fr/communes?" + search + "=" + value, function( data ) {
+      $('#res').empty();
+      $.each(data, function(id, content){
+        html = "<ul> \n";
+        $.each(content, function(key, val){
+          console.log(content);
+          html += "<li> " + key + " : " + val + "</li>\n";
+
+        });
+        html += "</ul>"
+        $('#res').append(html);
+      });
+
+    });
+  });
+
+
+  });
+  </script>
+</html>

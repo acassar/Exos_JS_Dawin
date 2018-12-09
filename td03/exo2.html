@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <div class="container">
+    <p class="hover">Agrandis moi !</p>
+  </div>
+</body>
+<script src="jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"> </script>
+<script type="text/javascript">
+  (function($){
+    $.fn.zoom = function(){
+      this.each(function(){
+        $(this).hover(function(){
+          $(this).css("font-size", "24px");
+        }, function(){
+          $(this).css("font-size", "initial");
+        });
+      });
+      return this;
+    };
+  })(jQuery);
+
+  $('.hover').zoom();
+
+</script>
+</html>

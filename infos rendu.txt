@@ -1,0 +1,4 @@
+date limite : 9/12/28
+
+Mettre les TP sur git
+ajouter pierre.biasutti@labri.fr sur git

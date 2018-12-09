@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TP 3</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="content">
+        <h1>Drag moi !</h1>
+      </div>
+      <div class="">
+        <ul class="sortable">
+          <li data-id="1" >Option 1</li>
+          <li data-id="2">Option 2</li>
+          <li data-id="3">Option 3</li>
+          <li data-id="4">Option 4</li>
+          <li data-id="5">Option 5</li>
+        </ul>
+      </div>
+      <button id="getOrder" type="button" name="button">Get order</button>
+    </div>
+    <div class="coords">
+      <h3>Position :</h3>
+        <p> X: <span id="offsetX"> </span></p>
+        <p> Y: <span id="offsetY"> </span></p>
+    </div>
+    <div class="">
+      <h3>Order:</h3>
+      <p id="order"></p>
+    </div>
+  </body>
+  <script src="jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"> </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.content').draggable({
+        drag: function(event, ui) {
+          $('#offsetX').empty();
+          $('#offsetX').append(parseInt(ui.offset["left"]));
+          $('#offsetY').empty();
+          $('#offsetY').append(ui.offset["top"]);
+        },
+        containment: "parent"
+
+      });
+
+      $('.sortable').sortable();
+
+      $("#getOrder").click(function(){
+        var order = [];
+        $('.sortable li').each(function(){
+          order.push($(this).data("id"));
+        });
+        $('#order').empty();
+        $.each(order, function(key, value){
+          $('#order').append("<p>Position  "+ key + " -> " + value + "</p>");
+        })
+      })
+
+    });
+  </script>
+
+  <style media="screen">
+    .container{
+      border: 2px solid black;
+    }
+
+    .content{
+      width: 150px;
+      height: 150px;
+      padding: 0.5em;
+      background-color: red;
+    }
+
+    li{
+      list-style: none;
+      padding-left: 0px;
+      border: solid 1px black;
+      background-color: grey;
+      padding: auto;
+      width: 10em;
+    }
+
+  </style>
+</html>

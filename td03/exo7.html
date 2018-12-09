@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Plugin d'auto complétion</title>
+  </head>
+  <body>
+    Recherche : <input type="text" name="" value="">
+
+  </body>
+  <script src="jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="jquery-ui-1.12.1/jquery-ui.js"> </script>
+  <script type="text/javascript">
+    (function($){
+      $.fn.autocomplet = function(words){
+        this.each(function(){
+
+          $(this).keydown(function(e){
+            if(e.key == "Tab")
+            {
+              e.preventDefault();
+              // var fitWords = []; //tableau des mots pour lesquels la début est le même que le contenu du champs
+
+            for(var i=0; i<words.length; i++)
+            {
+              if(words[i].startsWith($(this).val()))
+              {
+                //début de mot trouvé
+                $(this).val(words[i]);
+              }else {
+                //début de mot non trouvé
+              }
+            }
+          }
+          });
+
+
+        });
+        return this;
+      };
+    })(jQuery);
+
+    //tableau de mots disponnibles pour l'auto complétion
+    var words = ["fraise", "banane", "orange", "citron", "pastèque", "cerise", "pomme", "pêche", "melon"];
+
+    $('input:text').autocomplet(words);
+
+  </script>
+</html>

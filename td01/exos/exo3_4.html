@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Exercice 3 et 4</h1>
+  </body>
+  <script type="text/javascript">
+  var Personne = {
+    nom : "",
+    prenom : "",
+    date_naissance : [1,1,1977],
+    taille : "",
+
+
+    init: function(nom, prenom, dateNaissance, taille){
+      this.nom = nom;
+      this.prenom = prenom;
+      this.dateNaissance = dateNaissance;
+      this.taille = taille;
+    },
+
+    decrire : function(){ console.log("La personne " + this.prenom + " " + this.nom + " est né le " + this.dateNaissance + " et fait " + this.taille + " mètres" )
+  this.direAge();
+},
+
+    direAge : function()
+    {
+      var date_naissance = new Date(this.dateNaissance[2], this.dateNaissance[1]-1, this.dateNaissance[0]);
+      var actuelle = new Date();
+
+      var diff =  date_naissance.getTime() - actuelle.getTime() ;
+
+      // console.log(date_naissance);
+      // console.log(actuelle);
+      var age = diff /1000 / 60 / 60 / 24 / 365 *-1;
+      age = Math.trunc(age);
+      console.log(this.prenom + " " + this.nom + " a " + age + " ans");
+
+    }
+
+  };
+
+  // var pers = Object.create(Personne);
+  // pers.init("Dupont", "Michel", [12,5,1971]);
+  // pers.decrire();
+
+var Professeur = Object.create(Personne);
+Professeur.email = "";
+Professeur.initProfesseur = function(nom, prenom, dateNaissance, taille, email){
+  this.init(nom, prenom, dateNaissance, taille);
+  this.email = email;
+}
+Professeur.decrireProf = function(){
+  // console.log("Le Professeur " + this.prenom + " " + this.nom + " est né le " + this.dateNaissance + ", contact : " + this.email )
+  this.decrire();
+  console.log("Contact : " + this.email);
+  console.log('');
+}
+
+var prof = Object.create(Professeur)
+prof.initProfesseur("Durand", "Kevin", [26, 7, 1961], 1.80 , "leprof@email.fr");
+prof.decrireProf();
+
+var prof2 = Object.create(Professeur)
+prof2.initProfesseur("Michel", "Jean", [2, 6, 1960], 1.64 , "lebestprof@email.fr");
+prof2.decrireProf();
+
+// prof.direAge();
+// prof2.direAge();
+
+  </script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<h1>Exercice 1 et 2</h1>
+  </body>
+
+<script type="text/javascript">
+
+function Etudiant(nom, prenom, num_etudiant, date_naissance)  {
+  this.nom = nom;
+  this.prenom = prenom;
+  this.num_etudiant = num_etudiant;
+  this.date_naissance = date_naissance;
+
+
+  this.presenter = function()
+  {
+    console.log("L'étudiant " + this.prenom + " " + this.nom + " est né le " + this.date_naissance + " et a pour numéro étudiant : " + this.num_etudiant);
+  };
+
+  this.age = function()
+  {
+    var date_naissance = new Date(this.date_naissance[2], this.date_naissance[1]-1, this.date_naissance[0]);
+    var actuelle = new Date();
+
+    var diff =  date_naissance.getTime() - actuelle.getTime() ;
+
+    // console.log(date_naissance);
+    // console.log(actuelle);
+    var age = diff /1000 / 60 / 60 / 24 / 365 *-1;
+    age = Math.trunc(age);
+    console.log(this.prenom + " " + this.nom + " a " + age + " ans");
+
+  }
+}
+
+var pers1 = new Etudiant("Cassar", "Adrien", 1, [06,11,1998]);
+pers1.presenter();
+pers1.age();
+</script>
+
+
+
+</html>
